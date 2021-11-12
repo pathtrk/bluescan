@@ -77,11 +77,13 @@ if __name__ == "__main__":
 
     try:
         results = upload_and_analyse(image_path)
+
+        # Print the detected text, line by line
+        for text_result in results:
+            for line in text_result.lines:
+                print(line.text)
+                print(line.bounding_box)
+
     except Exception as e:
         print(e)
-
-    # Print the detected text, line by line
-    for text_result in results:
-        for line in text_result.lines:
-            print(line.text)
-            print(line.bounding_box)
+        print("Error: Failed to read on Azure!")
